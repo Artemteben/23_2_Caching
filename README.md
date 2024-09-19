@@ -1,11 +1,8 @@
-# Знакомство с Django
-
-# Home_work6_Django
 
 ## Установка
 
 1. **Клонируйте репозиторий:**
-   git@github.com:Artemteben/Django_hw6.git
+   git@github.com:Artemteben/23_1_access-permission.git
 
 2. **Создайте виртуальное окружение и активируйте его:**
     ```sh
