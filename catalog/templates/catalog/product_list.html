@@ -4,29 +4,29 @@
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% if user.is_authenticated %}
             {% for product in object_list %}
             <div class="col">
                 <div class="card shadow-sm">
-                    <img src="{{ product.image | media_filter}}">
+                    <img src="{{ product.image }}">
                     <div class="card-body">
-                        <p class="card-text">Наименование: {{product.name}}</p>
-                        <p class="card-text">Описание продукта: {{product.description | truncate_chars:100}}</p>
-                        <p class="card-text">Цена: {{product.price}}</p>
+                        <p class="card-text">Наименование: {{ product.name }}</p>
+                        <p class="card-text">Дата создания продукта: {{ product.created_at }}</p>
+                        <p class="card-text">Цена: {{ product.price }}</p>
                         {% if product.active_version %}
-                        <p class="card-text">Активная версия: {{ product.active_version.version_name }} ({{
-                            product.active_version.version_number }})</p>
+                        <p class="card-text">Активная версия: {{ product.active_version.version_name }}
+                            {{product.active_version.version_number }}</p>
                         {% endif %}
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 {% if perms.catalog.can_edit_category and perms.catalog.can_edit_description and
                                 perms.catalog.can_cancel_publication or user == product.owner %}
+                                <a class="btn btn-primary" href="{% url 'catalog:product_update' product.pk %}"
+                                   role="button">Редактировать</a>
                                 <a class="btn btn-primary" href="{% url 'catalog:product_detail' product.pk %}"
                                    role="button">Посмотреть</a>
                                 {% if perms.catalog.can_edit_category and perms.catalog.can_edit_description and
                                 perms.catalog.can_cancel_publication or user == product.owner %}
-                                <a class="btn btn-primary" href="{% url 'catalog:product_update' product.pk %}"
-                                   role="button">Редактировать</a>
-                                {% endif %}
                                 <a class="btn btn-primary" href="{% url 'catalog:product_delete' product.pk %}"
                                    role="button">Удалить</a>
                             </div>
@@ -35,6 +35,7 @@
                 </div>
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
