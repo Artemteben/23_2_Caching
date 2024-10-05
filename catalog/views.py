@@ -14,6 +14,7 @@ from django.views.generic import (
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
 from catalog.models import Product, Blog, Version
+from catalog.services import get_catalog_from_cache
 
 
 def home(request):
@@ -32,6 +33,9 @@ def contacts(request):
 class ProductListView(ListView):
     model = Product
     template_name = "catalog/product_list.html"
+
+    def get_queryset(self):
+        return get_catalog_from_cache().filter(publication_sign=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

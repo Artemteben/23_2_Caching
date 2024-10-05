@@ -160,4 +160,4 @@ cython_debug/
 .idea/
 .idea
 .DS_Store
-database.ini/
+database.ini/!/.env

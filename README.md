@@ -1,8 +1,9 @@
-
 ## Установка
 
+23.2 Кеширование и работа с переменными окружения
+
 1. **Клонируйте репозиторий:**
-   git@github.com:Artemteben/23_1_access-permission.git
+   git@github.com:Artemteben/23_2_Caching.git
 
 2. **Создайте виртуальное окружение и активируйте его:**
     ```sh
